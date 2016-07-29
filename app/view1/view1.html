@@ -1,1 +1,24 @@
-<p>This is the partial for view 1.</p>
+<div class="row">
+    <div class="brainteaser">
+        <h1>Создайте игру - введите совое имя и загадате слово</h1>
+        <div class="brainteaser__inner">
+            <form action="">
+                <h3>Имя</h3>
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="yourWords" placeholder="Имя">
+                </div>
+                <h3>Загадай слово</h3>
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="yourWords" placeholder="Слово">
+                </div>
+                <div class="text">
+                    <h3>Ты загадал <span class="text__word">{{yourWords}}</span></h3>
+                </div>
+                <div class="block-btn">
+                    <button class="btn btn-default">Создать игру</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
