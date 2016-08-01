@@ -1,5 +1,6 @@
 // CONTENT
 @import url(https://fonts.googleapis.com/css?family=Poiret+One&subset=latin,cyrillic);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,600,600italic&subset=latin,cyrillic);
 
 .wrap {
   background: white;
@@ -18,7 +19,6 @@
     }
   }
 }
-
 .img-block {
   width: 100%;
   height: 450px;
@@ -69,6 +69,19 @@
           background: #bf650a;
         }
       }
+      &.btn-success {
+        background: #2da340;
+        border-color: #2da340;
+        font-weight: 600;
+        border-radius: 6px;
+        display: inline-block;
+        width: 100%;
+        max-width: 277px;
+        opacity: 1;
+        &:hover, &:active, &:focus {
+          background: darken(#2da340, 20%);
+        }
+      }
     }
   }
 }
@@ -94,6 +107,62 @@
     max-width: 600px;
     margin: 20px auto;
   }
+  &__courses {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    background: #fff;
+    font-weight: 600;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    .btn-default {
+      background: #f1760c;
+      color: #fff;
+      font-weight: 600;
+      border: 1px solid #f1760c;
+      text-transform: uppercase;
+      padding: 12px 30px;
+      transition: background 0.2s ease-out;
+
+      &:hover {
+        background: darken(#f1760c, 10%);
+      }
+    }
+    .table-hover {
+      margin-top: 25px;
+      tr {
+        td, th {
+          &:last-child {
+            text-align: center;
+          }
+        }
+      }
+    }
+    .green  {
+      background: rgba(45, 163, 64, 0.4);
+    }
+    .light-green {
+      background: rgba(45, 163, 64, 0.2);
+    }
+    .dropdown-block {
+      position: relative;
+      display: block;
+      width: 100%;
+      max-width: 200px;
+      margin: 0 auto;
+    }
+    .btn-primary {
+      width: 100%;
+    }
+    .dropdown-menu {
+      width: 100%;
+    }
+  }
+  h3.text-center {
+    margin-top: 0;
+    margin-bottom: 25px;
+  }
   h3 {
     font-weight: 600;
     .text__word {
@@ -101,5 +170,26 @@
       display: inline-block;
       word-break: break-all;
     }
+  }
+}
+
+multiselect {
+  text-align: left;
+  max-width: 300px;
+  display: block;
+  margin: 0 auto;
+  .btn-default {
+    padding: 3px 10px !important;
+    background: #ffffff !important;
+    border: 1px solid #337ab7 !important;
+    color: #000 !important;
+  }
+  .dropdown-menu-form {
+    width: 100%;
+    max-width: 300px;
+  }
+  .form-control {
+    height: 36px;
+    font-size: 14px;
   }
 }

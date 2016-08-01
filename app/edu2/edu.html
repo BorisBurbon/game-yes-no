@@ -1,0 +1,101 @@
+<div class="row" ng-controller="TableCtrl">
+    <div class="brainteaser">
+        <h3 class="text-center">Заполнение таблицы ng-repeat</h3>
+
+        <div class="brainteaser__courses">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>№</th>
+                    <th>Name</th>
+                    <th>Items</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in items" ng-class="$even ? 'green' : 'light-green'">
+                    <td>
+                        {{$index+1}}
+                        <span ng-if="$first">First</span>
+                        <span ng-if="$last">Last</span>
+                    </td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.items}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="brainteaser">
+        <h3 class="text-center">Динамический контент с помощью ng-repeat-start и ng-repeat-end</h3>
+
+        <div class="brainteaser__courses">
+            <p ng-repeat-start="item in items">
+                <span>№ {{$index+1}}</span>
+                <span>
+                     У {{item.name}} значение -
+                </span>
+                <span>
+                    "{{item.items}}"
+                </span>
+            </p>
+            <span ng-repeat-end></span>
+        </div>
+    </div>
+</div>
+
+
+<!--Select-->
+<div class="row" ng-controller="SelectCtrl">
+    <div class="brainteaser">
+        <h3 class="text-center">Select</h3>
+        <div class="brainteaser__courses">
+            <div class="form-group">
+                <label for="select">Select</label>
+                <select name=""
+                        id="select"
+                        ng-model="selected"
+                        ng-options="item for item in items"
+                        class="form-control"
+                    ></select>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/Select-->
+
+<!---multiselect-->
+<div class="row" ng-controller="MultiselectCtrl">
+    <div class="brainteaser">
+        <h3 class="text-center">Bootstrap multiselect</h3>
+        <div class="brainteaser__courses">
+            <multiselect
+                ng-model="selection"
+                show-search="true"
+                options="options">
+            </multiselect>
+        </div>
+    </div>
+</div>
+<!--multiselect-->
+
+<!--dropdown-->
+<div class="row" ng-controller="DropdownCtrl">
+    <div class="brainteaser">
+        <h3 class="text-center">uib-dropdown-toggle</h3>
+        <div class="brainteaser__courses">
+            <!-- Simple dropdown -->
+            <span uib-dropdown on-toggle="toggled(open)" class="dropdown-block">
+              <button class="btn btn-primary" id="simple-dropdown" uib-dropdown-toggle>
+                  Select
+              </button>
+              <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">
+                  <li ng-repeat="choice in items">
+                      <a href>{{choice}}</a>
+                  </li>
+              </ul>
+            </span>
+        </div>
+    </div>
+</div>
+<!--dropdown-->
+
