@@ -54,7 +54,7 @@
                 <select name=""
                         id="select"
                         ng-model="selected"
-                        ng-options="item for item in items"
+                        ng-options="item.prop1 for item in items track by item.prop2"
                         class="form-control"
                     ></select>
             </div>

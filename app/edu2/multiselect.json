@@ -1,11 +1,11 @@
-[
-  "France",
-  "United Kingdom",
-  "Germany",
-  "Belgium",
-  "Netherlands",
-  "Spain",
-  "Italy",
-  "Poland",
-  "Austria"
-]
+{
+"item" : "France",
+"item" : "United Kingdom",
+"item" : "Germany",
+"item" : "Belgium",
+"item" : "Netherlands",
+"item" : "Spain",
+"item" : "Italy",
+"item" : "Poland",
+"item" : "Austria"
+}

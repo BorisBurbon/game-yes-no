@@ -1,37 +1,112 @@
 <div class="row" ng-controller="CourseListCtrl">
     <div class="brainteaser">
-        <h3 class="text-center">Пользователь: {{data.user}}. Количество курсов - {{data.courses.length}}</h3>
+        <h3 class="text-center">Пользователь: {{data.user}}. Количество тасков - {{tasks.courses.length}}</h3>
         <div class="brainteaser__courses">
-
-            <div class="input-group">
-                <input class="form-control" ng-model="courseName" />
-            <span class="input-group-btn">
-                <button class="btn btn-default" ng-click="addNewCourse()">Добавить</button>
-            </span>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <select id="actionPriority" class="form-control" ng-model="task.priority">
+                            <option>High</option>
+                            <option selected>Normal</option>
+                            <option>Low</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-5">
+                        <input class="form-control" ng-model="task.name" />
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="btn btn-default" ng-click="addTask(task)">Добавить</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="" class="padding-label">Шаблон отображения</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <select
+                            ng-model="mode"
+                            class="form-control"
+                            ng-options="item.display for item in options track by item.value"
+                            ></select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h4>
+                            Количество сделаныйх тасков
+                        <span class="label label-success">
+                            {{(tasks.courses | filter : {passed : 'true'} ).length}}
+                        </span>
+                        </h4>
+                    </div>
+                    <div class="col-sm-6">
+                        <h4 class="text-right">
+                            Количество не сделанных тасков
+                        <span class="label label-danger">
+                            {{(tasks.courses | filter : {passed : 'false'} ).length}}
+                        </span>
+                        </h4>
+                    </div>
+                </div>
             </div>
 
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th>Курс</th>
-                    <th></th>
-                    <th>Пройден</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="course in data.courses">
-                    <td>{{course.name}}</td>
-                    <!-- CheckBox чрез директиву ng-model связан со свойством passed -->
-                    <td><input type="checkbox" ng-model="course.passed" /></td>
-                    <td>
+            <div ng-switch on="mode.value" >
+                <table class="table table-hover" ng-switch-when="table">
+                    <thead>
+                    <tr>
+                        <th>Task</th>
+                        <th ng-class="">priority</th>
+                        <th></th>
+                        <th>Completed</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="course in tasks.courses">
+                        <td>{{course.name}}</td>
+                        <td>{{course.priority}}</td>
+                        <!-- CheckBox чрез директиву ng-model связан со свойством passed -->
+                        <td><input type="checkbox" ng-model="course.passed" /></td>
+                        <td>
+                            <span style="{{setStyle(course.passed)}}">
+                                {{showText(course.passed)}}
+                            </span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <ul class="list-group" ng-switch-when="list">
+                    <ul ng-repeat="course in tasks.courses" class="list-group-item list-group-item-info">
+                        <li>
+                            <span>{{course.name}}</span>
+                            <span>{{course.priority}}</span>
+                            <span>
+                                <input type="checkbox" ng-model="course.passed" />
+                            </span>
+                            <span style="{{setStyle(course.passed)}}">
+                                {{showText(course.passed)}}
+                            </span>
+                        </li>
+                    </ul>
+                </ul>
+                <ol class="list-group" ng-switch-when="budges">
+                    <li ng-repeat="course in tasks.courses" class="list-group-item">
+                        <span>{{course.name}}</span>
+                        <span>{{course.priority}}</span>
                         <span style="{{setStyle(course.passed)}}">
+                            <input type="checkbox" ng-model="course.passed"/>
                             {{showText(course.passed)}}
                         </span>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+                        <span class="badge">
+                            {{$index+1}}
+                        </span>
+                    </li>
+                </ol>
 
+            </div>
         </div>
     </div>
 </div>

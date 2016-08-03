@@ -21,7 +21,10 @@ appCtrl.controller('TableCtrl', function($scope) {
 });
 
 appCtrl.controller('SelectCtrl', function ($scope) {
-    $scope.items = ['item 1', 'item 2', 'item 3', 'item 4', 'item 5', 'item 6', 'item 7', 'item 8'];
+    $scope.items = [{ prop1: "item 1", prop2: 1 },
+        { prop1: "item 2", prop2: 2 },
+        { prop1: "item 3", prop2: 3 }];
+
     $scope.selected = $scope.items[2];
 });
 
@@ -51,6 +54,22 @@ app.controller('DropdownCtrl', function ($scope, $log) {
 });
 
 // bootstrap multiselect
-app.controller('MultiselectCtrl', function ($scope) {
-    $scope.options = ['item 1', 'item 2', 'item 3', 'item 4', 'item 5', 'item 6', 'item 7', 'item 8'];
+var options  = [
+    "France",
+    "United Kingdom",
+    "Germany",
+    "Belgium",
+    "Netherlands",
+    "Spain",
+    "Italy",
+    "Poland",
+    "Austria"
+];
+app.controller('MultiselectCtrl', function ($scope , $http) {
+    $scope.options = options;
+
+    //$http.get("edu2/multiselect.json").success(function(data) {
+    //    $scope.options = data.item;
+    //});
+
 });

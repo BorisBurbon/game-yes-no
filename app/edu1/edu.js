@@ -3,11 +3,16 @@ var courseListApp = angular.module('myApp.edu1', []);
 
 var model = {
     user: "Boris",
-    courses: [{ name: "HTML, CSS", passed: true },
-        { name: "JavaScript Essential", passed: true },
-        { name: "JavaScript Advanced", passed: true },
-        { name: "HTML5 &amp; CSS3", passed: false },
-        { name: "AngularJS", passed: false }]
+    courses: [{ name: "Change fav-icon", priority: "High", passed: true },
+        { name: "JavaScript Essential", priority: "Normal", passed: true },
+        { name: "JavaScript Advanced", priority: "Low", passed: true },
+        { name: "HTML5", priority: "High", passed: false },
+        { name: "Created animation", priority: "Normal", passed: false },
+        { name: "Change text", priority: "Low", passed: true },
+        { name: "Fix bugs slicing", priority: "High", passed: false },
+        { name: "Add modal", priority: "Normal", passed: true },
+        { name: "Datapicker", priority: "Normal", passed: false },
+        { name: "AngularJS", priority: "Normal", passed: true }]
 };
 
 var CourseListCtrl = courseListApp.config(['$routeProvider', function($routeProvider) {
@@ -18,17 +23,20 @@ var CourseListCtrl = courseListApp.config(['$routeProvider', function($routeProv
 }]);
 
 CourseListCtrl.controller('CourseListCtrl', function($scope) {
-    $scope.data = model;
+    $scope.tasks = model;
 
-    //Обработчик нажатия по кнопке
-    $scope.addNewCourse = function () {
+    $scope.addTask = function (task) {
+        //angular.isDefined - функция, которая позволяет проверить наличие свойства объекта.
+        if (angular.isDefined(task) &&
+            angular.isDefined(task.name) &&
+            angular.isDefined(task.priority)) {
 
-        $scope.data.courses.push({
-            name: $scope.courseName,
-            passed: false
-        });
-
-        $scope.courseName = "";
+            $scope.tasks.courses.push({
+                name: task.name,
+                priority: task.priority,
+                complete: false
+            });
+        }
     };
 
     $scope.showText = function (passed) {
@@ -37,5 +45,12 @@ CourseListCtrl.controller('CourseListCtrl', function($scope) {
 
     $scope.setStyle = function (passed) {
         return passed ? "color:green" : "color:red; font-weight: bold";
-    }
+    };
+
+    $scope.options =
+        [{ display: "Таблица", value: "table" },
+            { display: "Список", value: "list" },
+            { display: "Список с маркерами", value: "budges" }];
+
+    $scope.mode = $scope.options[0];
 });
